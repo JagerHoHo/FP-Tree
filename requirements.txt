@@ -1,0 +1,4 @@
+igraph==0.9.9
+tabulate==0.8.9
+texttable==1.6.4
+yapf==0.32.0
