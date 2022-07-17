@@ -27,8 +27,7 @@ class Datum:
         raise KeyError(datum)
 
     def __str__(self):
-        return str(self.datum) + ' : ' + str(
-            self.counter) if self.datum else 'Null'
+        return f'{str(self.datum)} : {str(self.counter)}' if self.datum else 'Null'
 
     def __eq__(self, other: object):
         return self.datum == other.datum
@@ -193,9 +192,11 @@ class FP_Tree:
                 for itemset, count in temp.items()
                 if count >= self.minsup * self.n_data
             }
-            for itm in temp:
-                pairs.append("".join(
-                    sorted(itm, key=self.sort_by_frequency, reverse=True)))
+            pairs.extend(
+                "".join(sorted(itm, key=self.sort_by_frequency, reverse=True))
+                for itm in temp
+            )
+
         self.frequent_item[curr_node] = pairs
 
     def get_frequent_items(self):
